@@ -25,6 +25,7 @@ interface ICredit {
 interface IUser {
     username: string;
     password: string;
+    email: string;
     realName?: string;
     profile?: string;
     ubication?: string;
