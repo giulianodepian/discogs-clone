@@ -2,8 +2,14 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import account from './src/routes/account';
+import dotenv from "dotenv";
+import session from "express-session";
+import passport from "passport";
+dotenv.config();
 const app = express();
 const mongouri = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/discogsdb`;
+
+
 
 mongoose.connect(mongouri, (err) => {
     if (err) {
@@ -13,9 +19,26 @@ mongoose.connect(mongouri, (err) => {
     }
 });
 
+app.disable('x-powered-by');
 app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(
+    session({
+    secret: 'superdupersecret',
+    saveUninitialized: false,
+    resave: false,
+    cookie: { 
+        secure: false
+    }
+    })
+)
+app.use( (req, res, next) => {  
+    console.log('req.session', req.session);  
+    return next();
+});
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/account', account);
 

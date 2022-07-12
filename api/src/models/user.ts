@@ -57,6 +57,11 @@ userSchema.path('email').validate(async function(value: string) {
     return !emailCount;
 }, "Email Already Exist");
 
+userSchema.path('username').validate(async function(value: string) {
+    const userCount = await mongoose.models.User.findOne({username: value})
+    return !userCount;
+}, "Username Already Exist");
+
 const userModel = model<IUser>("User", userSchema)
 
 export default userModel;

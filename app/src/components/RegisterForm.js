@@ -37,7 +37,7 @@ const RegisterForm = (props) => {
     })
 
     return (
-        <div className='registerBox'>
+        <div className='register-box'>
             <ul id='errors' className='error-list'>{errorsList}</ul>
             <form onSubmit={handleSubmit}>
                 <input type="text" value={usernameValue} onChange={(e) => setUsernameValue(e.target.value)} placeholder="Username"/>
