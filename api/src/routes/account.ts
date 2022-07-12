@@ -5,7 +5,7 @@ import passport from "../passport";
 const router = express.Router();
 
 router.get('/checkuser', (req, res) => {
-    if (req.user) res.send({logged: true})
+    if (req.isAuthenticated()) res.send({logged: true})
     else res.send({logged: false})
 })
 

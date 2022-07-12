@@ -32,7 +32,7 @@ app.use(
     cookie: {
         sameSite: 'lax', 
         secure: false,
-        maxAge: 1000 * 60 * 60 * 2
+        maxAge: 1000 * 60 * 60 * 24
     },
     })
 )

@@ -6,7 +6,9 @@ const Home = () => {
     const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:8080/account/checkuser')
+        fetch('http://localhost:8080/account/checkuser', {
+            credentials: "include"
+        })
         .then( (res) => res.json())
         .then( (data) => {
             if(data.logged === true) setIsLogged(true)

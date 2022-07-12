@@ -19,7 +19,7 @@ const LoginForm = (props) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(jsonCredentials),
-            credentials: 'include',
+            credentials: 'same-origin',
         })
         .then((res) => {
             if (res.status === 200) console.log("success")
