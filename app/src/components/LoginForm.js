@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 const LoginForm = (props) => {
     const [usernameValue, setUsernameValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
-    let navigate = useNavigate;
+    //let navigate = useNavigate;
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -18,7 +18,8 @@ const LoginForm = (props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(jsonCredentials)
+            body: JSON.stringify(jsonCredentials),
+            credentials: 'include',
         })
         .then((res) => {
             if (res.status === 200) console.log("success")

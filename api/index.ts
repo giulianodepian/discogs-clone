@@ -20,7 +20,8 @@ mongoose.connect(mongouri, (err) => {
 });
 
 app.disable('x-powered-by');
-app.use(cors());
+app.enable('trust proxy');
+app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(
@@ -28,9 +29,11 @@ app.use(
     secret: 'superdupersecret',
     saveUninitialized: false,
     resave: false,
-    cookie: { 
-        secure: false
-    }
+    cookie: {
+        sameSite: 'lax', 
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 2
+    },
     })
 )
 app.use( (req, res, next) => {  
