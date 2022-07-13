@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/checkuser', (req, res) => {
     if (req.isAuthenticated()) res.send({logged: true})
     else res.send({logged: false})
-})
+});
 
 router.post('/create', async (req, res) => {
     console.log(req.body);
@@ -29,10 +29,15 @@ router.post('/create', async (req, res) => {
             return res.status(400).send(errors);
         }
     }
-})
+});
 
 router.post('/login', passport.authenticate('local'), (req: any, res) => {
     res.send(req.user.username)
-})
+});
+
+router.post('/logout', (req: any, res) => {
+    req.logout();
+    res.status(200);
+});
 
 export default router;

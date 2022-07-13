@@ -4,7 +4,6 @@ import { useState } from 'react';
 const LoginForm = (props) => {
     const [usernameValue, setUsernameValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
-    //let navigate = useNavigate;
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -19,10 +18,11 @@ const LoginForm = (props) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(jsonCredentials),
-            credentials: 'same-origin',
+            credentials: 'include',
         })
         .then((res) => {
-            if (res.status === 200) console.log("success")
+            if (res.status === 200) props.handleLogin();
+            else if (res.status === 401) console.log("Incorrect Username Or Password")
         })
         .catch(err => {
             console.log(err);

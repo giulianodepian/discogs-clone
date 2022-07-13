@@ -9,7 +9,6 @@ passport.serializeUser((user: any, done) => {
 
 // user object attaches to the request as req.user
 passport.deserializeUser((id, done) => {
-	console.log('DeserializeUser called')
 	userModel.findOne(
 		{ _id: id },
 		'username',

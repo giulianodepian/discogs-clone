@@ -1,19 +1,15 @@
 import './../assets/styles/home.css'
 import { useState, useEffect } from 'react';
+import checkLogin from '../utils/checkLogin';
 
 
 const Home = () => {
     const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:8080/account/checkuser', {
-            credentials: "include"
-        })
-        .then( (res) => res.json())
-        .then( (data) => {
-            if(data.logged === true) setIsLogged(true)
-        })
+        checkLogin().then(logged => setIsLogged(logged));
     }, [])
+
     let text;
 
     if (isLogged) text = <p>I'm Logged</p>
