@@ -1,13 +1,15 @@
 import './../assets/styles/home.css'
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import checkLogin from '../utils/checkLogin';
+import { useOutletContext } from 'react-router-dom';
 
 
 const Home = () => {
-    const [isLogged, setIsLogged] = useState(false);
+    const [isLogged, setIsLogged] = useOutletContext();
 
     useEffect(() => {
         checkLogin().then(logged => setIsLogged(logged));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     let text;

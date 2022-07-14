@@ -4,6 +4,77 @@
 .layoutdiv {
     display: flex;
     width: 100%;
-    height: 48px;
+    height: 50px;
+    background-color: #262626;
+}
+
+
+
+.discogs-button {
+    display: flex;
+    width: 100px;
+    flex:1;  
+}
+
+.logout-button {
+    flex:1
+}
+
+.account-box {
+    display:flex;
+    justify-content: right;
+    flex: 1;
+}
+
+.register-button {
+    height: 100%;
+    display:inline-flex;
+    align-items: center;
+    flex: 0 0;
+    flex-basis: 100px;
+}
+
+.register-button a {
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height:60%;
+    text-decoration: none;
+    background-color: #ead10b;
+    border-radius: 5px;
+    color: black;
+}
+
+.login-button {
+    height: 100%;
+    display: inline-flex;
+    flex: 0 0;
+    flex-basis: 100px;
+}
+
+.login-button a {
+    display:inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+}
+
+.login-button a:hover {
     background-color: black;
+}
+
+.discogs-button a {
+    display:inline-flex;
+    width: 100px;
+    height: 100%;
+    align-items: center;
+    flex: 0 1;
+}
+
+.discogs-button img {
+    max-height:70%;
 }

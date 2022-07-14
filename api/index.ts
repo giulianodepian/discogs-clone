@@ -5,6 +5,8 @@ import account from './src/routes/account';
 import dotenv from "dotenv";
 import session from "express-session";
 import passport from "passport";
+import MongoStore from 'connect-mongo';
+
 dotenv.config();
 const app = express();
 const mongouri = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/discogsdb`;
@@ -29,17 +31,12 @@ app.use(
     secret: 'superdupersecret',
     saveUninitialized: false,
     resave: false,
-    cookie: {
-        sameSite: 'lax', 
-        secure: false,
-        maxAge: 1000 * 60 * 60 * 24
-    },
+    store: MongoStore.create({
+        mongoUrl: mongouri
+    })
     })
 )
-app.use( (req, res, next) => {  
-    console.log('req.session', req.session);  
-    return next();
-});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
