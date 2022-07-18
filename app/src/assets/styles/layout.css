@@ -8,16 +8,10 @@
     background-color: #262626;
 }
 
-
-
 .discogs-button {
     display: flex;
     width: 100px;
     flex:1;  
-}
-
-.logout-button {
-    flex:1
 }
 
 .account-box {
@@ -31,7 +25,8 @@
     display:inline-flex;
     align-items: center;
     flex: 0 0;
-    flex-basis: 100px;
+    flex-basis: 11%;
+    min-width: 100px;
 }
 
 .register-button a {
@@ -46,11 +41,16 @@
     color: black;
 }
 
+.register-button a:hover {
+    background-color: #eee38a;
+}
+
 .login-button {
     height: 100%;
     display: inline-flex;
     flex: 0 0;
-    flex-basis: 100px;
+    flex-basis: 11%;
+    min-width: 100px;
 }
 
 .login-button a {
@@ -77,4 +77,55 @@
 
 .discogs-button img {
     max-height:70%;
+}
+
+.user-menu {
+    flex: 0 0;
+    flex-basis: 6%;
+    min-width: 57px;
+    display: block;
+    position: relative
+}
+
+.user-menu button{
+    text-decoration: none;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.user-menu button:hover{
+    background-color: black;
+}
+
+.user-submenu {
+    float: right;
+    display: none;
+    width: 200%;
+}
+
+.user-submenu ul {
+    padding: 0;
+    margin: 0;
+    width:100%;
+    overflow: hidden;
+}
+
+.user-submenu ul li {
+    display: block;
+    width: 100%;
+    height: 50px;
+}
+
+.logout-button {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.logout-button:hover {
+    color: blue;
+    text-decoration: underline;
 }

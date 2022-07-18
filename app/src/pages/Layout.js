@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Layout = () => {
-    const [isLogged, setIsLogged] = useState(false) 
+    const [isLogged, setIsLogged] = useState(false);
+    const [userMenuOpened, setUserMenuOpened] = useState(false); 
     function handleLogout(){
         fetch('http://localhost:8080/account/logout', {
             method: 'POST',
@@ -18,6 +19,17 @@ const Layout = () => {
             if (res.status === 200) window.location.reload();
         })
         .catch((err) => console.log(err));
+    }
+
+    function handleUserMenu(e) {
+        const submenu = document.getElementById("user-submenu-id");
+        if (userMenuOpened) {
+            submenu.style.display = "none";
+            setUserMenuOpened(false);
+        } else {
+            submenu.style.display = "block";
+            setUserMenuOpened(true);
+        }
     }
 
     return (
@@ -41,12 +53,18 @@ const Layout = () => {
                         </Link>
                     </div>
                     }
+                    {
+                        isLogged &&
+                        <div className="user-menu" onClick={handleUserMenu}>
+                            <button>------</button>
+                            <div className="user-submenu" id="user-submenu-id">
+                                <ul>
+                                    <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
                 </div>
-                { isLogged &&
-                <div className="logout-button">
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
-                }
             </div>
             <Outlet context={[isLogged, setIsLogged]}/>
         </div>
