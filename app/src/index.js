@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Home from './pages/Home';
 import Layout from './pages/Layout';
+import AltLayout from './pages/AltLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import reportWebVitals from './reportWebVitals';
@@ -15,8 +16,10 @@ root.render(
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
       </Route>
-      <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
+      <Route element={<AltLayout />}>
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+      </Route>
     </Routes>
   </BrowserRouter>
 );

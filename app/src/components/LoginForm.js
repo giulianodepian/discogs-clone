@@ -31,10 +31,10 @@ const LoginForm = (props) => {
 
     return (
 
-        <div className="login-box">
+        <div className="form-acc-box">
             <form onSubmit={handleSubmit}>
                 <input type="text" value={usernameValue} onChange={(e) => setUsernameValue(e.target.value)} placeholder="Username"/>
-                <input type="password" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)}  placeholder="password" />
+                <input type="password" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)}  placeholder="Password" />
                 <input type="submit" value="Log In"/>
             </form>
         </div>

@@ -8,6 +8,14 @@
     background-color: #262626;
 }
 
+.buttonsdiv {
+    display: flex;
+    width: 64%;
+    height: 100%;
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
 .discogs-button {
     display: flex;
     width: 100px;

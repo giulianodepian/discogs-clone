@@ -35,35 +35,39 @@ const Layout = () => {
     return (
         <div className="wraper">
             <div className="layoutdiv">
-                <div className="discogs-button">
-                    <Link to='/'><img src={discogsLogo} alt="Discogs Logo"/></Link>
-                </div>
-                <div className="account-box">
-                    { !isLogged &&
-                    <div className="register-button">
-                        <Link to='/register'>
-                            Register
-                        </Link>
+                <div className="buttonsdiv">
+                    <div className="discogs-button">
+                        <Link to='/'><img src={discogsLogo} alt="Discogs Logo"/></Link>
                     </div>
-                    }
-                    { !isLogged &&
-                    <div className="login-button">
-                        <Link to='/login'>
-                            Log In
-                        </Link>
-                    </div>
-                    }
-                    {
-                        isLogged &&
-                        <div className="user-menu" onClick={handleUserMenu}>
-                            <button>------</button>
-                            <div className="user-submenu" id="user-submenu-id">
-                                <ul>
-                                    <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
-                                </ul>
+                    <div className="account-box">
+                        { 
+                            !isLogged &&
+                            <div className="register-button">
+                                <Link to='/register'>
+                                    Register
+                                </Link>
                             </div>
-                        </div>
-                    }
+                        }
+                        { 
+                            !isLogged &&
+                            <div className="login-button">
+                                <Link to='/login'>
+                                    Log In
+                                </Link>
+                            </div>
+                        }
+                        {
+                            isLogged &&
+                            <div className="user-menu" onClick={handleUserMenu}>
+                                <button>------</button>
+                                <div className="user-submenu" id="user-submenu-id">
+                                    <ul>
+                                        <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
             <Outlet context={[isLogged, setIsLogged]}/>

@@ -15,7 +15,7 @@ const Login = (props) => {
     }
 
     return (
-        <div className="login-div">
+        <div className="form-acc-div">
             {isLogged && <Navigate to="/" />}
             <LoginForm handleLogin={handleLogin} />
         </div>
