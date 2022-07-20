@@ -1,12 +1,14 @@
 import { Outlet} from "react-router-dom";
 import './../assets/styles/layout.css'
-import discogsLogo from '../assets/images/discogs-logo.png'
+import discogsLogo from '../assets/images/discogs-logo.png';
+import defaultUser from '../assets/images/defaultUser.jpg';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Layout = () => {
     const [isLogged, setIsLogged] = useState(false);
-    const [userMenuOpened, setUserMenuOpened] = useState(false); 
+    const [userMenuOpened, setUserMenuOpened] = useState(false);
+    const [user, setUser] = useState({}) 
     function handleLogout(){
         fetch('http://localhost:8080/account/logout', {
             method: 'POST',
@@ -30,6 +32,12 @@ const Layout = () => {
             submenu.style.display = "block";
             setUserMenuOpened(true);
         }
+    }
+
+    var profilePic = <img src={defaultUser} alt="Default Use" />;
+
+    if (isLogged && user.image) {
+        profilePic = <img src={`data:image/${user.image.contentType};base64, ${user.image.data.toString('base64')}`} alt="User Pic" />;
     }
 
     return (
@@ -59,7 +67,7 @@ const Layout = () => {
                         {
                             isLogged &&
                             <div className="user-menu" onClick={handleUserMenu}>
-                                <button>------</button>
+                                <button>{profilePic}</button>
                                 <div className="user-submenu" id="user-submenu-id">
                                     <ul>
                                         <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
@@ -70,7 +78,7 @@ const Layout = () => {
                     </div>
                 </div>
             </div>
-            <Outlet context={[isLogged, setIsLogged]}/>
+            <Outlet context={[isLogged, setIsLogged, user, setUser]}/>
         </div>
     )
 }

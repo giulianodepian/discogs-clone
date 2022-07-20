@@ -5,10 +5,18 @@ import { useOutletContext } from 'react-router-dom';
 
 
 const Home = () => {
-    const [isLogged, setIsLogged] = useOutletContext();
+    const [isLogged, setIsLogged, user, setUser] = useOutletContext();
 
     useEffect(() => {
-        checkLogin().then(logged => setIsLogged(logged));
+        checkLogin()
+        .then(logged => {
+            setIsLogged(logged);
+            return fetch('http://localhost:8080/account/user', {
+                credentials: "include"
+            })
+        })
+        .then(res => res.json())
+        .then(data => setUser(data))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

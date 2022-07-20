@@ -6,6 +6,11 @@ import dotenv from "dotenv";
 import session from "express-session";
 import passport from "passport";
 import MongoStore from 'connect-mongo';
+import multer, { FileFilterCallback } from 'multer';
+//import {User} from './src/types/extendedUser';
+
+type DestinationCallback = (error: Error | null, destination: string) => void;
+type FileNameCallback = (error: Error | null, filename: string) => void;
 
 dotenv.config();
 const app = express();
@@ -20,6 +25,17 @@ mongoose.connect(mongouri, (err) => {
         console.log("Connection to database succeful")
     }
 });
+
+const fileStorage = multer.diskStorage({
+    destination: (req: any, file: Express.Multer.File, callback: DestinationCallback) => {
+        callback(null, './src/userImages')
+    },
+    filename: (req: any, file: Express.Multer.File, callback: FileNameCallback) => {
+        callback(null, file.fieldname + "-" + req.user?.username)
+    }
+});
+
+const upload = multer({storage: fileStorage});
 
 app.disable('x-powered-by');
 app.enable('trust proxy');

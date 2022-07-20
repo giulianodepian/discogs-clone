@@ -1,4 +1,4 @@
-import express from "express";
+import express, {Request} from "express";
 import userModel from "../models/user";
 import passport from "../passport";
 
@@ -36,10 +36,17 @@ router.post('/login', passport.authenticate('local'), (req: any, res) => {
 });
 
 router.post('/logout', (req: any, res, next) => {
-    req.logout(function(err: any) {
+    req.logout(function(err: Error) {
         if (err) {return next(err)}
         res.send("Succefully LogOut");
     });
 });
+
+router.get('/user', (req: any, res) => {
+    userModel.findOne({'username': req.user?.username}, function(err: Error, user: any) {
+        if (err) res.status(500).send(err);
+        else res.status(200).send(user);
+    })
+})
 
 export default router;
