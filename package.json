@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "body-parser": "^1.20.0",
-    "connect-mongodb-session": "^3.1.1"
-  }
-}

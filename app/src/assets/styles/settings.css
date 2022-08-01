@@ -1,0 +1,43 @@
+.settings-acc-div {
+    display:flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.settings-acc-box {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-acc-box form {
+    width: 50%;
+    flex-direction: column;
+    display:flex;
+}
+
+.settings-acc-box label {
+    width: 100%;
+    padding-bottom: 3%;
+}
+
+.settings-acc-box input {
+    width: 50%;
+    margin-bottom: 3%;
+}
+
+.settings-acc-box textarea {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 3%;
+}
+
+.settings-acc-box [type=submit] {
+    background-color: green;
+    color: white;
+    width: 100%;
+    flex-basis: 30px;
+}

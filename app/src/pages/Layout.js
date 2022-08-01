@@ -37,7 +37,13 @@ const Layout = () => {
     var profilePic = <img src={defaultUser} alt="Default Use" />;
 
     if (isLogged && user.image) {
-        profilePic = <img src={`data:image/${user.image.contentType};base64, ${user.image.data.toString('base64')}`} alt="User Pic" />;
+        var binary = '';
+        var bytes = new Uint8Array(user.image.data.data);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode( bytes[ i ] );
+        }
+        profilePic = <img src={`data:image/${user.image.contentType};base64, ${btoa(binary)}`} alt="User Pic" />;
     }
 
     return (
@@ -70,6 +76,7 @@ const Layout = () => {
                                 <button>{profilePic}</button>
                                 <div className="user-submenu" id="user-submenu-id">
                                     <ul>
+                                        <li><Link className="settings-button" to='/account/settings'>Settings</Link></li>
                                         <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </div>

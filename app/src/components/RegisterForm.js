@@ -40,9 +40,9 @@ const RegisterForm = (props) => {
         <div className='form-acc-box'>
             <ul id='errors' className='error-list'>{errorsList}</ul>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={usernameValue} onChange={(e) => setUsernameValue(e.target.value)} placeholder="Username"/>
-                <input type="password" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)} placeholder="Password" />
-                <input type="email" value={emailValue} onChange={(e) => setEmailValue(e.target.value)} placeholder="Email"/>
+                <input type="text" value={usernameValue} onChange={(e) => setUsernameValue(e.target.value)} placeholder="Username" required/>
+                <input type="password" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)} placeholder="Password" required/>
+                <input type="email" value={emailValue} onChange={(e) => setEmailValue(e.target.value)} placeholder="Email" required/>
                 <input type="submit" value="Create Account"/>
             </form>
         </div>

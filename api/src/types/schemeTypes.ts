@@ -1,8 +1,8 @@
 import {Date, Types} from 'mongoose';
 
 interface IImage {
-    data: Buffer;
-    contentType: string;
+    data?: Buffer;
+    contentType?: string;
 }
 
 interface ILabelAlbum {

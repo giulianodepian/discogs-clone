@@ -141,3 +141,19 @@
     color: blue;
     text-decoration: underline;
 }
+
+.settings-button {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display:inline-flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-button:hover {
+    color: blue;
+    text-decoration: underline;
+}

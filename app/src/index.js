@@ -6,6 +6,7 @@ import Layout from './pages/Layout';
 import AltLayout from './pages/AltLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import UserSettings from './pages/UserSettings';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ root.render(
     <Routes>
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
+        <Route path='/account/settings' element={<UserSettings />} />
       </Route>
       <Route element={<AltLayout />}>
         <Route path='/register' element={<Register />} />
