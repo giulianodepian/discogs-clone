@@ -3,12 +3,30 @@ import './../assets/styles/layout.css'
 import discogsLogo from '../assets/images/discogs-logo.png';
 import defaultUser from '../assets/images/defaultUser.jpg';
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import checkLogin from '../utils/checkLogin';
 
 const Layout = () => {
     const [isLogged, setIsLogged] = useState(false);
     const [userMenuOpened, setUserMenuOpened] = useState(false);
-    const [user, setUser] = useState({}) 
+    const [user, setUser] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
+    
+    useEffect(() => {
+        setIsLoaded(false);
+        checkLogin()
+        .then(logged => {
+            setIsLogged(logged);
+            return fetch('http://localhost:8080/account/currentuser', {
+                credentials: "include"
+            })
+        })
+        .then(res => res.json())
+        .then(data => setUser(data))
+        .then(() => setIsLoaded(true))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     function handleLogout(){
         fetch('http://localhost:8080/account/logout', {
             method: 'POST',
@@ -45,8 +63,8 @@ const Layout = () => {
         }
         profilePic = <img src={`data:image/${user.image.contentType};base64, ${btoa(binary)}`} alt="User Pic" />;
     }
-
     return (
+        isLoaded ? (
         <div className="wraper">
             <div className="layoutdiv">
                 <div className="buttonsdiv">
@@ -87,6 +105,8 @@ const Layout = () => {
             </div>
             <Outlet context={[isLogged, setIsLogged, user, setUser]}/>
         </div>
+        ) : 
+        <div></div>
     )
 }
 

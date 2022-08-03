@@ -1,14 +1,9 @@
 import LoginForm from "../components/LoginForm";
-import { useState, useEffect } from "react";
-import checkLogin from "../utils/checkLogin";
-import { Navigate } from 'react-router-dom';
+import { Navigate, useOutletContext } from 'react-router-dom';
 
 const Login = (props) => {
-    const [isLogged, setIsLogged] = useState(false);
 
-    useEffect(() => {
-        checkLogin().then(logged => setIsLogged(logged))
-    });
+    const [isLogged, setIsLogged] = useOutletContext();
 
     function handleLogin() {
         setIsLogged(true);
