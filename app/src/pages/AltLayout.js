@@ -5,13 +5,15 @@ import checkLogin from '../utils/checkLogin';
 
 
 const AltLayout = () => {
-    const [isLogged, setIsLogged, isLoaded, setIsLoaded] = useState(false);
+    const [isLogged, setIsLogged] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         checkLogin().then(logged => setIsLogged(logged)).then(() => setIsLoaded(true))
     });
 
         return(
+            isLoaded ? (
             <div className="wraper">
                 <div className="layoutdiv">
                     <div className="discogs-button">
@@ -20,6 +22,8 @@ const AltLayout = () => {
                 </div>
                 <Outlet context={[isLogged, setIsLogged]}/>
             </div>
+            ) : 
+            <div></div>
         )
 }
 
