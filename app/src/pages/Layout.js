@@ -17,12 +17,13 @@ const Layout = () => {
         checkLogin()
         .then(logged => {
             setIsLogged(logged);
-            return fetch('http://localhost:8080/account/currentuser', {
+            fetch('http://localhost:8080/account/currentuser', {
                 credentials: "include"
             })
+            .then(res => res.json())
+            .then(data => setUser(data))
+            .catch(() => console.log("User Not Logged"))
         })
-        .then(res => res.json())
-        .then(data => setUser(data))
         .then(() => setIsLoaded(true))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
